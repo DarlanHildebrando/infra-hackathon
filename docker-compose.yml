@@ -1,0 +1,17 @@
+services:
+  db-hackathon:
+    image: postgres:15
+    container_name: db-hackathon
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: senai-hackathon
+    ports:
+      - "5432:5432"
+    mem_limit: 500m
+    mem_reservation: 100m
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

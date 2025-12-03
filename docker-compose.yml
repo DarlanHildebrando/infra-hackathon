@@ -12,6 +12,19 @@ services:
     mem_reservation: 100m
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  
+  back-hackathon:
+    build: ./backend-hackathon
+    container_name: backend
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db-hackathon:5432/senai-hackathon?schema=public
+      - JWT_SECRET=chavinha_secreta
+    mem_limit: 500m
+    mem_reservation: 100m
+    depends_on:
+      - db-hackathon
 
 volumes:
   postgres_data:
